@@ -143,3 +143,14 @@ variable "sonarqube_badges" {
     error_message = "Invalid key found in sonarqube_badges. Allowed keys: sonarqube_quality_gate_status, sonarqube_bugs, sonarqube_code_smells, sonarqube_coverage, sonarqube_duplicated_lines_density, sonarqube_lines_of_code, sonarqube_reliability_rating, sonarqube_security_rating, sonarqube_technical_debt, sonarqube_maintainability_rating, sonarqube_vulnerabilities."
   }
 }
+
+variable "variables" {
+  type = map(object({
+    value             = string
+    description       = optional(string)
+    protected         = optional(bool)
+    masked            = optional(bool)
+    environment_scope = optional(string)
+  }))
+  default = {}
+}

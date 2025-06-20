@@ -47,3 +47,15 @@ resource "gitlab_project_variable" "ci_variable_project_type" {
   masked            = "false"
   environment_scope = "*"
 }
+
+resource "gitlab_project_variable" "variable" {
+  for_each = var.variables
+
+  project           = gitlab_project.project.id
+  key               = each.key
+  value             = each.value.value
+  description       = each.value.description
+  protected         = each.value.protected
+  masked            = each.value.masked
+  environment_scope = each.value.environment_scope
+}
