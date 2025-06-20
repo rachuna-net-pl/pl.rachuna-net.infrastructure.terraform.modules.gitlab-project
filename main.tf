@@ -59,3 +59,9 @@ resource "gitlab_project_variable" "variable" {
   masked            = each.value.masked
   environment_scope = each.value.environment_scope
 }
+
+resource "gitlab_project_mirror" "foo" {
+  count   = var.mirror_url != "" ? 1 : 0
+  project = gitlab_project.project.id
+  url     = var.mirror_url
+}

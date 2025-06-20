@@ -154,3 +154,9 @@ variable "variables" {
   }))
   default = {}
 }
+
+variable "mirror_url" {
+  type        = string
+  description = "URL for the project mirror"
+  default     = ""
+}
