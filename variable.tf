@@ -160,3 +160,10 @@ variable "mirror_url" {
   description = "URL for the project mirror"
   default     = ""
 }
+
+variable "is_enable_convensional_commits_push_rule" {
+  type        = bool
+  default     = false
+  description = "Enable conventional commits push rule"
+
+}
