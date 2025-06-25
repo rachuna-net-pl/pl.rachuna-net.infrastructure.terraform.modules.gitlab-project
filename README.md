@@ -1,7 +1,7 @@
 ::include{file=.gitlab/badges.md}
 # ![](https://gitlab.com/pl.rachuna-net/infrastructure/terraform/modules/gitlab-project/-/raw/main/images/gitlab.png){height=20px} gitlab-project
 
-Terraform module for creating gitlab project
+Moduł służy do automatycznego zakładania projektów w GitLab z wykorzystaniem standaryzacji, ochrony branchy, tagów, zmiennych CI oraz integracji z SonarQube.
 
 ::include{file=docs/main.md}
 ::include{file=.gitlab/contributions.md}
