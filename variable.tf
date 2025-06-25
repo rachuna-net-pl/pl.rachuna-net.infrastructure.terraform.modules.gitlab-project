@@ -161,7 +161,7 @@ variable "mirror_url" {
   default     = ""
 }
 
-variable "is_enable_convensional_commits_push_rule" {
+variable "is_enable_conventional_commits_push_rule" {
   type        = bool
   default     = false
   description = "Enable conventional commits push rule"
