@@ -19,7 +19,7 @@ resource "gitlab_project" "project" {
 }
 
 resource "gitlab_project_push_rules" "push_rule" {
-  count   = var.is_enable_convensional_commits_push_rule != "" ? 1 : 0
+  count   = var.is_enable_conventional_commits_push_rule
   project = gitlab_project.project.id
 
   commit_message_regex = "^(build|chore|ci|docs|params|feat|fix|perf|refactor|style|test|revert|merge|release|hotfix|fixup|squash|wip|BREAKING CHANGE)(\\(.+\\))?: .+"
