@@ -54,4 +54,34 @@ locals {
     for k, v in local.sonarqube_badges : k => v
     if try(local.final_enabled_badges[k], false) == true }
   ) : {}
+
+  merged_project_variables = merge(
+    local.allowed_project_types[var.project_type].ci_variables,
+    var.variables,
+    {
+      PROJECT_TYPE = {
+        value             = var.project_type
+        description       = "Project Type"
+        protected         = false
+        masked            = false
+        environment_scope = "*"
+      }
+    },
+    var.sonarqube_cloud_project_id != "" ? {
+      SONARQUBE_CLOUD_PROJECT_ID = {
+        value             = var.sonarqube_cloud_project_id
+        description       = "SonarQube Cloud Project ID"
+        protected         = false
+        masked            = false
+        environment_scope = "*"
+      }
+      IS_ENABLED_SONARQUBE = {
+        value             = var.is_enabled_sonarqube
+        description       = "SonarQube enabled flag"
+        protected         = false
+        masked            = false
+        environment_scope = "*"
+      }
+    } : {}
+  )
 }
