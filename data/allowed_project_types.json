@@ -3,6 +3,7 @@
       "icon_type"     : "",
       "gitlab_ci_path": ".gitlab-ci.yml@pl.rachuna-net/cicd/gitlab-ci",
       "tags"          : [],
+      "ci_variables"     : {},
       "sonarqube": {
         "sonarqube_quality_gate_status"     : true,
         "sonarqube_bugs"                    : true,
@@ -21,6 +22,7 @@
       "icon_type"     : "ansible",
       "gitlab_ci_path": ".gitlab-ci.yml@pl.rachuna-net/cicd/gitlab-ci",
       "tags"          : ["ansible", "ansible-inventory"],
+      "ci_variables"     : {},
       "sonarqube": {
         "sonarqube_quality_gate_status"     : true,
         "sonarqube_bugs"                    : true,
@@ -39,6 +41,7 @@
       "icon_type"     : "ansible",
       "gitlab_ci_path": "infrastructure/ansible-playbook.yml@pl.rachuna-net/cicd/gitlab-ci",
       "tags"          : ["ansible", "ansible-playbook"],
+      "ci_variables"     : {},
       "sonarqube": {
         "sonarqube_quality_gate_status"     : true,
         "sonarqube_bugs"                    : true,
@@ -57,6 +60,7 @@
       "icon_type"     : "ansible",
       "gitlab_ci_path": "infrastructure/ansible-roles.yml@pl.rachuna-net/cicd/gitlab-ci",
       "tags"          : ["ansible", "ansible-role"],
+      "ci_variables"     : {},
       "sonarqube": {
         "sonarqube_quality_gate_status"     : true,
         "sonarqube_bugs"                    : true,
@@ -75,6 +79,7 @@
       "icon_type"     : "container",
       "gitlab_ci_path": "containers/docker.yml@pl.rachuna-net/cicd/gitlab-ci",
       "tags"          : ["docker"],
+      "ci_variables"     : {},
       "sonarqube": {
         "sonarqube_quality_gate_status"     : true,
         "sonarqube_bugs"                    : true,
@@ -93,6 +98,7 @@
       "icon_type"     : "docs",
       "gitlab_ci_path": "mkdocs/pages.yml@pl.rachuna-net/cicd/gitlab-ci",
       "tags"          : ["mkdocs"],
+      "ci_variables"     : {},
       "sonarqube": {
         "sonarqube_quality_gate_status"     : false,
         "sonarqube_bugs"                    : false,
@@ -111,6 +117,7 @@
       "icon_type"     : "gitlab-component",
       "gitlab_ci_path": "cicd/gitlab-components.yml@pl.rachuna-net/cicd/gitlab-ci",
       "tags"          : ["gitlab-component"],
+      "ci_variables"     : {},
       "sonarqube": {
         "sonarqube_quality_gate_status"     : false,
         "sonarqube_bugs"                    : true,
@@ -129,6 +136,7 @@
       "icon_type"     : "gitlab-profile",
       "gitlab_ci_path": ".gitlab-ci.yml@pl.rachuna-net/cicd/gitlab-ci",
       "tags"          : ["gitlab-profile"],
+      "ci_variables"     : {},
       "sonarqube": {
         "sonarqube_quality_gate_status"     : true,
         "sonarqube_bugs"                    : true,
@@ -147,6 +155,7 @@
       "icon_type"     : "gitlab",
       "gitlab_ci_path": "cicd/gitlab-ci.yml@pl.rachuna-net/cicd/gitlab-ci",
       "tags"          : ["gitlab-ci"],
+      "ci_variables"     : {},
       "sonarqube": {
         "sonarqube_quality_gate_status"     : true,
         "sonarqube_bugs"                    : true,
@@ -165,6 +174,7 @@
       "icon_type"     : "packer",
       "gitlab_ci_path": "infrastructure/packer.yml@pl.rachuna-net/cicd/gitlab-ci",
       "tags"          : ["packer"],
+      "ci_variables"     : {},
       "sonarqube": {
         "sonarqube_quality_gate_status"     : false,
         "sonarqube_bugs"                    : false,
@@ -183,6 +193,7 @@
       "icon_type"     : "terraform",
       "gitlab_ci_path": "infrastructure/terraform.yml@pl.rachuna-net/cicd/gitlab-ci",
       "tags"          : ["terraform"],
+      "ci_variables"     : {},
       "sonarqube": {
         "sonarqube_quality_gate_status"     : true,
         "sonarqube_bugs"                    : true,
@@ -201,6 +212,7 @@
       "icon_type"     : "terraform",
       "gitlab_ci_path": "infrastructure/terraform.yml@pl.rachuna-net/cicd/gitlab-ci",
       "tags"          : ["terraform", "terraform-module"],
+      "ci_variables"     : {},
       "sonarqube": {
         "sonarqube_quality_gate_status"     : true,
         "sonarqube_bugs"                    : true,

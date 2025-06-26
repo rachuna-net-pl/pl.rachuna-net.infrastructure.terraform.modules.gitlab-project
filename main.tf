@@ -44,31 +44,30 @@ resource "gitlab_tag_protection" "protected_tags" {
   create_access_level = each.value.create_access_level
 }
 
-## CI Variables - Set project type
-resource "gitlab_project_variable" "ci_variable_project_type" {
-  project           = gitlab_project.project.id
-  key               = "PROJECT_TYPE"
-  description       = "Project Type"
-  value             = var.project_type
-  protected         = "false"
-  masked            = "false"
-  environment_scope = "*"
-}
 
 resource "gitlab_project_variable" "variable" {
-  for_each = var.variables
+  for_each = local.merged_project_variables
 
   project           = gitlab_project.project.id
   key               = each.key
   value             = each.value.value
-  description       = each.value.description
-  protected         = each.value.protected
-  masked            = each.value.masked
-  environment_scope = each.value.environment_scope
+  description       = lookup(each.value, "description", null)
+  protected         = lookup(each.value, "protected", false)
+  masked            = lookup(each.value, "masked", false)
+  environment_scope = lookup(each.value, "environment_scope", "*")
 }
 
-resource "gitlab_project_mirror" "foo" {
+resource "gitlab_project_mirror" "mirror" {
   count   = var.mirror_url != "" ? 1 : 0
   project = gitlab_project.project.id
   url     = var.mirror_url
+}
+
+resource "gitlab_project_badge" "sonarqube_badge" {
+  for_each = local.selected_badges
+
+  project   = gitlab_project.project.id
+  link_url  = each.value.link_url
+  image_url = each.value.image_url
+  name      = each.key
 }
