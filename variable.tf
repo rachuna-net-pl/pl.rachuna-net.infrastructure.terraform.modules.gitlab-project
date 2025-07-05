@@ -95,6 +95,14 @@ variable "protected_branches" {
   }
 }
 
+variable "labels" {
+  type = map(object({
+    description = string
+    color       = string
+  }))
+  default = {}
+}
+
 variable "protected_tags" {
   type = map(object({
     create_access_level = string

@@ -27,6 +27,15 @@ resource "gitlab_project_push_rules" "push_rule" {
   commit_message_regex = "^(build|chore|ci|docs|params|feat|fix|perf|refactor|style|test|revert|merge|release|hotfix|fixup|squash|wip|BREAKING CHANGE)(\\(.+\\))?: .+"
 }
 
+resource "gitlab_project_label" "label" {
+  for_each = var.labels
+
+  project     = gitlab_project.project.id
+  name        = each.key
+  description = each.value.description
+  color       = each.value.color
+}
+
 ## Protected Branches
 resource "gitlab_branch_protection" "protected_branches" {
   for_each = var.protected_branches
