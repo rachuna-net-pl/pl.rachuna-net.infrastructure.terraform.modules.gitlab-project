@@ -12,9 +12,11 @@ resource "gitlab_project" "project" {
   avatar                      = var.icon_type != "" ? "${path.module}/images/${var.icon_type}.png" : (local.allowed_project_types[var.project_type].icon_type != "" ? "${path.module}/images/${local.allowed_project_types[var.project_type].icon_type}.png" : null)
   avatar_hash                 = var.icon_type != "" ? filesha256("${path.module}/images/${var.icon_type}.png") : (local.allowed_project_types[var.project_type].icon_type != "" ? filesha256("${path.module}/images/${local.allowed_project_types[var.project_type].icon_type}.png") : null)
 
+  archived = var.archived
 
   lifecycle {
     prevent_destroy = true
+    ignore_changes  = [archived]
   }
 }
 

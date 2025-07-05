@@ -167,3 +167,9 @@ variable "is_enable_conventional_commits_push_rule" {
   description = "Enable conventional commits push rule"
 
 }
+
+variable "archived" {
+  type        = bool
+  default     = false
+  description = "Whether the GitLab project should be archived"
+}
