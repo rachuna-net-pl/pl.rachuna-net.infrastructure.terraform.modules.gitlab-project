@@ -9,8 +9,8 @@ resource "gitlab_project" "project" {
   visibility_level            = var.visibility
   build_git_strategy          = var.build_git_strategy
   autoclose_referenced_issues = var.autoclose_referenced_issues
-  avatar                      = var.icon_type != "" ? "${path.module}/images/${var.icon_type}.png" : (local.allowed_project_types[var.project_type].icon_type != "" ? "${path.module}/images/${local.allowed_project_types[var.project_type].icon_type}.png" : null)
-  avatar_hash                 = var.icon_type != "" ? filesha256("${path.module}/images/${var.icon_type}.png") : (local.allowed_project_types[var.project_type].icon_type != "" ? filesha256("${path.module}/images/${local.allowed_project_types[var.project_type].icon_type}.png") : null)
+  avatar                      = local.avatar == null ? null : "${local.avatar}"
+  avatar_hash                 = local.avatar == null ? null : filesha256("${local.avatar}")
 
   archived = var.archived
 
@@ -21,10 +21,10 @@ resource "gitlab_project" "project" {
 }
 
 resource "gitlab_project_push_rules" "push_rule" {
-  count   = var.is_enable_conventional_commits_push_rule == true ? 1 : 0
-  project = gitlab_project.project.id
+  count = var.is_gitlab_free == true ? 0 : 1
 
-  commit_message_regex = "^(build|chore|ci|docs|params|feat|fix|perf|refactor|style|test|revert|merge|release|hotfix|fixup|squash|wip|BREAKING CHANGE)(\\(.+\\))?: .+"
+  project              = gitlab_project.project.id
+  commit_message_regex = var.is_enable_conventional_commits_push_rule == true ? "^(build|chore|ci|docs|params|feat|fix|perf|refactor|style|test|revert|merge|release|hotfix|fixup|squash|wip|BREAKING CHANGE)(\\(.+\\))?: .+" : ""
 }
 
 resource "gitlab_project_label" "label" {
