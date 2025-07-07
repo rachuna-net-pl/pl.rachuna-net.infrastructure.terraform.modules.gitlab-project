@@ -1,111 +1,60 @@
-## Opis modułu
+## Requirements
 
-Moduł umożliwia tworzenie projektu GitLab wraz z konfiguracją:
-- ustawienia podstawowych właściwości projektu (nazwa, opis, widoczność, tagi, domyślna gałąź)
-- ochrony gałęzi (protected branches)
-- ochrony tagów (protected tags)
-- zmiennych CI/CD
-- mirrorowania projektu
-- reguł push (push rules) w tym wymuszanie konwencji Conventional Commits w commit message
+| Name | Version |
+|------|---------|
+| <a name="requirement_gitlab"></a> [gitlab](#requirement\_gitlab) | ~> 18.0 |
 
----
-## Wymagania
+## Providers
 
-- Provider: [gitlabhq/gitlab](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs)
-- Uprawnienia do tworzenia projektów w wybranej grupie GitLab
+| Name | Version |
+|------|---------|
+| <a name="provider_gitlab"></a> [gitlab](#provider\_gitlab) | ~> 18.0 |
 
----
-## Zmienne wejściowe
+## Modules
 
-| Nazwa                 | Typ                                                                 | Opis                                                                                     | Domyślna wartość                                                                                  |
-|-----------------------|---------------------------------------------------------------------|------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------|
-| `name`                | string                                                              | Nazwa projektu                                                                           | -                                                                                                |
-| `description`         | string                                                              | Opis projektu                                                                            | -                                                                                                |
-| `parent_group`        | string                                                              | ID grupy nadrzędnej                                                                      | -                                                                                                |
-| `default_branch`      | string                                                              | Domyślna gałąź                                                                           | "" (brak)                                                                                        |
-| `tags`                | list(string)                                                        | Lista tagów                                                                             | []                                                                                               |
-| `visibility`          | string                                                              | Widoczność projektu (`private`, `internal`, `public`)                                   | `private`                                                                                        |
-| `build_git_strategy`  | string                                                              | Strategia pobierania Gita (`clone`, `fetch`)                                            | `clone`                                                                                         |
-| `autoclose_referenced_issues` | bool                                                        | Automatyczne zamykanie powiązanych issue                                               | true                                                                                            |
-| `icon_type`           | string                                                              | Typ ikony projektu                                                                       | "" (brak)                                                                                        |
-| `project_type`        | string                                                              | Typ projektu (określa domyślne tagi i konfiguracje)                                     | "" (brak)                                                                                        |
-| `gitlab_ci_path`      | string                                                              | Ścieżka do pliku GitLab CI                                                              | null                                                                                            |
-| `protected_branches`  | map(object({push_access_level=string, merge_access_level=string}))  | Konfiguracja chronionych gałęzi                                                         | { "main" = { push_access_level = "no one", merge_access_level = "maintainer" } }                  |
-| `protected_tags`      | map(object({create_access_level=string}))                           | Konfiguracja chronionych tagów                                                          | { "v*" = { create_access_level = "maintainer" } }                                               |
-| `sonarqube_cloud_project_id` | string                                                        | ID projektu SonarQube Cloud                                                              | ""                                                                                              |
-| `is_enabled_sonarqube`| bool                                                                | Włączenie SonarQube                                                                      | true                                                                                           |
-| `sonarqube_badges`    | map(bool)                                                           | Konfiguracja odznak SonarQube                                                            | {}                                                                                              |
-| `variables`           | map(object({value=string, description=optional(string), protected=optional(bool), masked=optional(bool), environment_scope=optional(string)})) | Zmienne CI/CD                                                                            | {}                                                                                              |
-| `mirror_url`          | string                                                              | URL do mirrorowania projektu                                                             | ""                                                                                              |
-| `push_rules`          | object                                                             | Reguły push, w tym regex do walidacji commit message (Conventional Commits)              | commit_message_regex: "^(build|chore|ci|docs|feat|fix|perf|refactor|style|test|revert|merge|release|hotfix|fixup|squash|wip|BREAKING CHANGE)(\\(.+\\))?: .+" |
+No modules.
 
----
-## Przykład użycia
+## Resources
 
-```hcl
-module "gitlab_project" {
-  source = "path_to_module"
+| Name | Type |
+|------|------|
+| [gitlab_branch_protection.protected_branches](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/branch_protection) | resource |
+| [gitlab_project.project](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/project) | resource |
+| [gitlab_project_badge.sonarqube_badge](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/project_badge) | resource |
+| [gitlab_project_label.label](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/project_label) | resource |
+| [gitlab_project_mirror.mirror](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/project_mirror) | resource |
+| [gitlab_project_push_rules.push_rule](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/project_push_rules) | resource |
+| [gitlab_project_variable.variable](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/project_variable) | resource |
+| [gitlab_tag_protection.protected_tags](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/tag_protection) | resource |
+| [gitlab_group.parent](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/data-sources/group) | data source |
 
-  name        = "my-project"
-  description = "Przykładowy projekt"
-  parent_group = "123456"
-  default_branch = "main"
-  tags        = ["terraform", "gitlab"]
-  visibility  = "private"
-  build_git_strategy = "clone"
-  autoclose_referenced_issues = true
-  icon_type   = "gitlab"
-  project_type = "default"
-  gitlab_ci_path = null
+## Inputs
 
-  protected_branches = {
-    "main" = {
-      push_access_level  = "no one"
-      merge_access_level = "maintainer"
-    }
-  }
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_archived"></a> [archived](#input\_archived) | Whether the GitLab project should be archived | `bool` | `false` | no |
+| <a name="input_autoclose_referenced_issues"></a> [autoclose\_referenced\_issues](#input\_autoclose\_referenced\_issues) | Autoclose referenced issues | `bool` | `true` | no |
+| <a name="input_build_git_strategy"></a> [build\_git\_strategy](#input\_build\_git\_strategy) | The Git strategy. Defaults to fetch. | `string` | `"clone"` | no |
+| <a name="input_default_branch"></a> [default\_branch](#input\_default\_branch) | Default branch | `string` | `""` | no |
+| <a name="input_description"></a> [description](#input\_description) | n/a | `string` | n/a | yes |
+| <a name="input_gitlab_ci_path"></a> [gitlab\_ci\_path](#input\_gitlab\_ci\_path) | Path to the GitLab CI file | `string` | `null` | no |
+| <a name="input_avatar_type"></a> [avatar\_type](#input\_avatar\_type) | Type of the avatar for the group (default: from type) | `string` | `""` | no |
+| <a name="input_is_enable_conventional_commits_push_rule"></a> [is\_enable\_conventional\_commits\_push\_rule](#input\_is\_enable\_conventional\_commits\_push\_rule) | Enable conventional commits push rule | `bool` | `false` | no |
+| <a name="input_is_enabled_sonarqube"></a> [is\_enabled\_sonarqube](#input\_is\_enabled\_sonarqube) | Is SonarQube enabled | `bool` | `true` | no |
+| <a name="input_is_gitlab_free"></a> [is\_gitlab\_free](#input\_is\_gitlab\_free) | Is the project a free tier project | `bool` | `false` | no |
+| <a name="input_labels"></a> [labels](#input\_labels) | n/a | <pre>map(object({<br/>    description = string<br/>    color       = string<br/>  }))</pre> | `{}` | no |
+| <a name="input_mirror_url"></a> [mirror\_url](#input\_mirror\_url) | URL for the project mirror | `string` | `""` | no |
+| <a name="input_name"></a> [name](#input\_name) | n/a | `string` | n/a | yes |
+| <a name="input_parent_group"></a> [parent\_group](#input\_parent\_group) | n/a | `string` | n/a | yes |
+| <a name="input_project_type"></a> [project\_type](#input\_project\_type) | Project type | `string` | `""` | no |
+| <a name="input_protected_branches"></a> [protected\_branches](#input\_protected\_branches) | n/a | <pre>map(object({<br/>    push_access_level  = string<br/>    merge_access_level = string<br/>  }))</pre> | <pre>{<br/>  "develop": {<br/>    "merge_access_level": "maintainer",<br/>    "push_access_level": "no one"<br/>  },<br/>  "main": {<br/>    "merge_access_level": "maintainer",<br/>    "push_access_level": "no one"<br/>  }<br/>}</pre> | no |
+| <a name="input_protected_tags"></a> [protected\_tags](#input\_protected\_tags) | Protected tags | <pre>map(object({<br/>    create_access_level = string<br/>  }))</pre> | <pre>{<br/>  "v*": {<br/>    "create_access_level": "maintainer"<br/>  }<br/>}</pre> | no |
+| <a name="input_sonarqube_badges"></a> [sonarqube\_badges](#input\_sonarqube\_badges) | n/a | `map(bool)` | `{}` | no |
+| <a name="input_sonarqube_cloud_project_id"></a> [sonarqube\_cloud\_project\_id](#input\_sonarqube\_cloud\_project\_id) | SonarQube Cloud Project ID | `string` | `""` | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | Tags | `list(string)` | `[]` | no |
+| <a name="input_variables"></a> [variables](#input\_variables) | n/a | <pre>map(object({<br/>    value             = string<br/>    description       = optional(string)<br/>    protected         = optional(bool)<br/>    masked            = optional(bool)<br/>    environment_scope = optional(string)<br/>  }))</pre> | `{}` | no |
+| <a name="input_visibility"></a> [visibility](#input\_visibility) | The project's visibility | `string` | `"private"` | no |
 
-  protected_tags = {
-    "v*" = {
-      create_access_level = "maintainer"
-    }
-  }
+## Outputs
 
-  variables = {
-    "EXAMPLE_VAR" = {
-      value       = "example"
-      description = "Przykładowa zmienna"
-      protected   = false
-      masked      = false
-      environment_scope = "*"
-    }
-  }
-
-  mirror_url = ""
-
-  push_rules = {
-    commit_message_regex = "^(feat|fix|docs|style|refactor|test|chore)(\\(.+\\))?: .+"
-    deny_delete_tag      = true
-    member_check         = true
-    prevent_secrets      = true
-  }
-}
-```
-
----
-## Uwagi
-
-- Moduł wymaga odpowiednich uprawnień do tworzenia i modyfikacji projektów GitLab.
-- Regex w `commit_message_regex` powinien być dostosowany do wymagań projektu.
-- Push rules mogą być rozszerzane o dodatkowe opcje zgodnie z dokumentacją GitLab.
-
----
-## Wyjścia
-
-Brak zdefiniowanych wyjść.
-
----
-## Dodatkowe informacje
-
-- Obsługiwane typy projektów i ikon znajdziesz w pliku [`locals.tf`](locals.tf) oraz [`data/allowed_icon_types.json`](data/allowed_icon_types.json).
-- Domyślne ustawienia ochrony branchy i tagów możesz nadpisać przez zmienne `protected_branches` i `protected_tags`.
+No outputs.

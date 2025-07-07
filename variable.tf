@@ -1,13 +1,16 @@
 variable "name" {
-  type = string
+  type        = string
+  description = "Repository Name"
 }
 
 variable "description" {
-  type = string
+  type        = string
+  description = "Repository Description"
 }
 
 variable "parent_group" {
-  type = string
+  type        = string
+  description = "Parent Group"
 }
 
 variable "default_branch" {
@@ -15,7 +18,6 @@ variable "default_branch" {
   description = "Default branch"
   default     = ""
 }
-
 
 variable "tags" {
   type        = list(string)
@@ -50,16 +52,29 @@ variable "autoclose_referenced_issues" {
   description = "Autoclose referenced issues"
 }
 
-variable "icon_type" {
+variable "allowed_avatar_types_json" {
   type        = string
-  description = "Type of the icon for the group (default: from type)"
+  default     = ""
+  description = "Path to allowed avatar types json"
+}
+
+variable "avatar" {
+  type        = string
+  description = "Type of the avatar for the group (default: from type)"
   default     = ""
 
   validation {
-    condition     = contains(local.allowed_icon_types, var.icon_type)
+    condition     = contains(local.allowed_avatar_types, var.avatar)
     error_message = "Unsupported group type"
   }
 }
+
+variable "allowed_project_types_json" {
+  type        = string
+  default     = ""
+  description = "Path to allowed project types json"
+}
+
 
 variable "project_type" {
   type        = string
@@ -84,7 +99,7 @@ variable "protected_branches" {
     merge_access_level = string
   }))
   default = {
-    "main" = {
+    "develop" = {
       push_access_level  = "no one"
       merge_access_level = "maintainer"
     }
@@ -169,6 +184,12 @@ variable "mirror_url" {
   default     = ""
 }
 
+variable "is_gitlab_free" {
+  type        = bool
+  default     = true
+  description = "Is the project a free tier project"
+}
+
 variable "is_enable_conventional_commits_push_rule" {
   type        = bool
   default     = false
@@ -180,4 +201,10 @@ variable "archived" {
   type        = bool
   default     = false
   description = "Whether the GitLab project should be archived"
+}
+
+variable "avatars_dir" {
+  description = "Avatars directory png files"
+  type        = string
+  default     = ""
 }
