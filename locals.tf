@@ -1,7 +1,7 @@
 locals {
   avatars_dir = var.avatars_dir == "" ? "${path.root}/images/project" : var.avatars_dir
 
-  allowed_avatar_types_json = var.allowed_avatar_types_json == "" ? "${path.root}/data/allowed_avatar_types.json" : var.allowed_avatar_types_json
+  allowed_avatar_types_json = var.allowed_avatar_types_json == "" ? "${path.root}/data/allowed_avatar_project_types.json" : var.allowed_avatar_types_json
   allowed_avatar_types      = jsondecode(file("${local.allowed_avatar_types_json}"))
 
 
