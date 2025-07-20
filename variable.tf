@@ -208,3 +208,15 @@ variable "avatars_dir" {
   type        = string
   default     = ""
 }
+
+variable "only_allow_merge_if_pipeline_succeeds" {
+  description = "Set to true if you want allow merges only if a pipeline succeeds."
+  type        = bool
+  default     = true
+}
+
+variable "allow_merge_on_skipped_pipeline" {
+  description = "Set to true if you want to treat skipped pipelines as if they finished with success."
+  type        = bool
+  default     = false
+}

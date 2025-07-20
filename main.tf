@@ -1,18 +1,20 @@
 resource "gitlab_project" "project" {
-  name                        = var.name
-  description                 = var.description
-  archived                    = var.archived
-  namespace_id                = data.gitlab_group.parent.id
-  initialize_with_readme      = true
-  default_branch              = var.default_branch == "" ? null : var.default_branch
-  tags                        = toset(concat(local.allowed_project_types[var.project_type].tags, var.tags))
-  ci_config_path              = var.gitlab_ci_path == null ? local.allowed_project_types[var.project_type].gitlab_ci_path : var.gitlab_ci_path
-  visibility_level            = var.visibility
-  build_git_strategy          = var.build_git_strategy
-  autoclose_referenced_issues = var.autoclose_referenced_issues
-  avatar                      = local.avatar == null ? null : "${local.avatar}"
-  avatar_hash                 = local.avatar == null ? null : filesha256("${local.avatar}")
-
+  name                                             = var.name
+  description                                      = var.description
+  archived                                         = var.archived
+  namespace_id                                     = data.gitlab_group.parent.id
+  initialize_with_readme                           = true
+  default_branch                                   = var.default_branch == "" ? null : var.default_branch
+  tags                                             = toset(concat(local.allowed_project_types[var.project_type].tags, var.tags))
+  ci_config_path                                   = var.gitlab_ci_path == null ? local.allowed_project_types[var.project_type].gitlab_ci_path : var.gitlab_ci_path
+  visibility_level                                 = var.visibility
+  build_git_strategy                               = var.build_git_strategy
+  autoclose_referenced_issues                      = var.autoclose_referenced_issues
+  avatar                                           = local.avatar == null ? null : local.avatar
+  avatar_hash                                      = local.avatar == null ? null : filesha256(local.avatar)
+  only_allow_merge_if_all_discussions_are_resolved = true
+  only_allow_merge_if_pipeline_succeeds            = var.only_allow_merge_if_pipeline_succeeds
+  allow_merge_on_skipped_pipeline                  = var.allow_merge_on_skipped_pipeline
 
 
   lifecycle {
