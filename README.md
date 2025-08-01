@@ -1,23 +1,16 @@
-# <img src=".gitlab/avatar.png" alt="vagrant" height="20"/> Vagrant gitlab-project
-
-[![](https://gitlab.com/pl.rachuna-net/infrastructure/terraform/modules/gitlab-project/-/badges/release.svg)](https://gitlab.com/pl.rachuna-net/infrastructure/terraform/modules/gitlab-project/-/releases)
-[![](https://gitlab.com/pl.rachuna-net/infrastructure/terraform/modules/gitlab-project/badges/main/pipeline.svg)](https://gitlab.com/pl.rachuna-net/infrastructure/terraform/modules/gitlab-project/-/commits/main)
-
-Moduł służy do automatycznego zakładania projektów w GitLab z wykorzystaniem standaryzacji, ochrony branchy, tagów, zmiennych CI oraz integracji z SonarQube.
-
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.12.0 |
-| <a name="requirement_gitlab"></a> [gitlab](#requirement\_gitlab) | ~> 18.0 |
+| <a name="requirement_gitlab"></a> [gitlab](#requirement\_gitlab) | 18.1.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_gitlab"></a> [gitlab](#provider\_gitlab) | ~> 18.0 |
+| <a name="provider_gitlab"></a> [gitlab](#provider\_gitlab) | 18.1.0 |
 
 ## Modules
 
@@ -27,15 +20,15 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [gitlab_branch_protection.protected_branches](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/branch_protection) | resource |
-| [gitlab_project.project](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/project) | resource |
-| [gitlab_project_badge.sonarqube_badge](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/project_badge) | resource |
-| [gitlab_project_label.label](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/project_label) | resource |
-| [gitlab_project_mirror.mirror](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/project_mirror) | resource |
-| [gitlab_project_push_rules.push_rule](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/project_push_rules) | resource |
-| [gitlab_project_variable.variable](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/project_variable) | resource |
-| [gitlab_tag_protection.protected_tags](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/tag_protection) | resource |
-| [gitlab_group.parent](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/data-sources/group) | data source |
+| [gitlab_branch_protection.protected_branches](https://registry.terraform.io/providers/gitlabhq/gitlab/18.1.0/docs/resources/branch_protection) | resource |
+| [gitlab_project.project](https://registry.terraform.io/providers/gitlabhq/gitlab/18.1.0/docs/resources/project) | resource |
+| [gitlab_project_badge.sonarqube_badge](https://registry.terraform.io/providers/gitlabhq/gitlab/18.1.0/docs/resources/project_badge) | resource |
+| [gitlab_project_label.label](https://registry.terraform.io/providers/gitlabhq/gitlab/18.1.0/docs/resources/project_label) | resource |
+| [gitlab_project_mirror.mirror](https://registry.terraform.io/providers/gitlabhq/gitlab/18.1.0/docs/resources/project_mirror) | resource |
+| [gitlab_project_push_rules.push_rule](https://registry.terraform.io/providers/gitlabhq/gitlab/18.1.0/docs/resources/project_push_rules) | resource |
+| [gitlab_project_variable.variable](https://registry.terraform.io/providers/gitlabhq/gitlab/18.1.0/docs/resources/project_variable) | resource |
+| [gitlab_tag_protection.protected_tags](https://registry.terraform.io/providers/gitlabhq/gitlab/18.1.0/docs/resources/tag_protection) | resource |
+| [gitlab_group.parent](https://registry.terraform.io/providers/gitlabhq/gitlab/18.1.0/docs/data-sources/group) | data source |
 
 ## Inputs
 
@@ -73,18 +66,3 @@ No modules.
 
 No outputs.
 <!-- END_TF_DOCS -->
-
----
-## Contributions
-Jeśli masz pomysły na ulepszenia, zgłoś problemy, rozwidl repozytorium lub utwórz Merge Request. Wszystkie wkłady są mile widziane!
-[Contributions](CONTRIBUTING.md)
-
----
-## License
-Projekt licencjonowany jest na warunkach [Licencji MIT](LICENSE).
-
----
-# Author Information
-### &emsp; Maciej Rachuna
-# <img src="https://gitlab.com/pl.rachuna-net/gitlab-profile/-/raw/main/assets/logo/website_logo_transparent_background.png" alt="rachuna-net.pl" height="100"/>
-
