@@ -4,13 +4,13 @@
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.12.0 |
-| <a name="requirement_gitlab"></a> [gitlab](#requirement\_gitlab) | 18.1.0 |
+| <a name="requirement_gitlab"></a> [gitlab](#requirement\_gitlab) | 18.2.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_gitlab"></a> [gitlab](#provider\_gitlab) | 18.1.0 |
+| <a name="provider_gitlab"></a> [gitlab](#provider\_gitlab) | 18.2.0 |
 
 ## Modules
 
@@ -20,15 +20,15 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [gitlab_branch_protection.protected_branches](https://registry.terraform.io/providers/gitlabhq/gitlab/18.1.0/docs/resources/branch_protection) | resource |
-| [gitlab_project.project](https://registry.terraform.io/providers/gitlabhq/gitlab/18.1.0/docs/resources/project) | resource |
-| [gitlab_project_badge.sonarqube_badge](https://registry.terraform.io/providers/gitlabhq/gitlab/18.1.0/docs/resources/project_badge) | resource |
-| [gitlab_project_label.label](https://registry.terraform.io/providers/gitlabhq/gitlab/18.1.0/docs/resources/project_label) | resource |
-| [gitlab_project_mirror.mirror](https://registry.terraform.io/providers/gitlabhq/gitlab/18.1.0/docs/resources/project_mirror) | resource |
-| [gitlab_project_push_rules.push_rule](https://registry.terraform.io/providers/gitlabhq/gitlab/18.1.0/docs/resources/project_push_rules) | resource |
-| [gitlab_project_variable.variable](https://registry.terraform.io/providers/gitlabhq/gitlab/18.1.0/docs/resources/project_variable) | resource |
-| [gitlab_tag_protection.protected_tags](https://registry.terraform.io/providers/gitlabhq/gitlab/18.1.0/docs/resources/tag_protection) | resource |
-| [gitlab_group.parent](https://registry.terraform.io/providers/gitlabhq/gitlab/18.1.0/docs/data-sources/group) | data source |
+| [gitlab_branch_protection.protected_branches](https://registry.terraform.io/providers/gitlabhq/gitlab/18.2.0/docs/resources/branch_protection) | resource |
+| [gitlab_project.project](https://registry.terraform.io/providers/gitlabhq/gitlab/18.2.0/docs/resources/project) | resource |
+| [gitlab_project_badge.sonarqube_badge](https://registry.terraform.io/providers/gitlabhq/gitlab/18.2.0/docs/resources/project_badge) | resource |
+| [gitlab_project_label.label](https://registry.terraform.io/providers/gitlabhq/gitlab/18.2.0/docs/resources/project_label) | resource |
+| [gitlab_project_mirror.mirror](https://registry.terraform.io/providers/gitlabhq/gitlab/18.2.0/docs/resources/project_mirror) | resource |
+| [gitlab_project_push_rules.push_rule](https://registry.terraform.io/providers/gitlabhq/gitlab/18.2.0/docs/resources/project_push_rules) | resource |
+| [gitlab_project_variable.variable](https://registry.terraform.io/providers/gitlabhq/gitlab/18.2.0/docs/resources/project_variable) | resource |
+| [gitlab_tag_protection.protected_tags](https://registry.terraform.io/providers/gitlabhq/gitlab/18.2.0/docs/resources/tag_protection) | resource |
+| [gitlab_group.parent](https://registry.terraform.io/providers/gitlabhq/gitlab/18.2.0/docs/data-sources/group) | data source |
 
 ## Inputs
 
