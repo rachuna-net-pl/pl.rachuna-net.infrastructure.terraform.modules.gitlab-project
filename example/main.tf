@@ -1,6 +1,6 @@
 
 module "docs" {
-  source = "git@gitlab.com:pl.rachuna-net/infrastructure/terraform/modules/gitlab-project.git?ref=v2.0.2"
+  source = "git@gitlab.com:pl.rachuna-net/infrastructure/terraform/modules/gitlab-project.git?ref=v2.1.0"
 
   name               = "docs"
   archived           = false
