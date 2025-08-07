@@ -64,5 +64,8 @@ No modules.
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_description"></a> [description](#output\_description) | n/a |
+| <a name="output_name"></a> [name](#output\_name) | n/a |
 <!-- END_TF_DOCS -->
